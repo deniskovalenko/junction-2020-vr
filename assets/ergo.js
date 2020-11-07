@@ -93,7 +93,7 @@ function addTreesRandomly(
     probTreeLeft = 0.5,
     probTreeCenter = 0.5,
     probTreeRight = 0.5,
-    maxNumberTrees = 2
+    maxNumberTrees = 1
   } = {}) {
 
   var trees = [
@@ -132,6 +132,7 @@ const POSITION_Z_OUT_OF_SIGHT = 1;
 const POSITION_Z_LINE_START = 0.6;
 const POSITION_Z_LINE_END = 0.7;
 
+
 AFRAME.registerComponent('player', {
   tick: function() {
     document.querySelectorAll('.tree').forEach(function(tree) {
@@ -146,14 +147,17 @@ AFRAME.registerComponent('player', {
       if (!isGameRunning) return;
 
       if (POSITION_Z_LINE_START < position.z && position.z < POSITION_Z_LINE_END
-          && tree_position_index == player_position_index) {
-        gameOver();
+          && tree_position_index == player_position_index
+         && !countedTrees.has(tree_id)) {
+          addScoreForTree(tree_id);
+          updateScoreDisplay();
+        // gameOver();
       }
 
-      if (position.z > POSITION_Z_LINE_END && !countedTrees.has(tree_id)) {
-        addScoreForTree(tree_id);
-        updateScoreDisplay();
-      }
+      // if (position.z > POSITION_Z_LINE_END && !countedTrees.has(tree_id)) {
+      //   addScoreForTree(tree_id);
+      //   updateScoreDisplay();
+      // }
     })
   }
 })
