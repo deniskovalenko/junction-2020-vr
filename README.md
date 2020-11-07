@@ -7,7 +7,7 @@ That's why we're using WebVR. Works on a phone, on a phone with VR headset (like
 
 Try it out - https://deniskovalenko.github.io/junction-2020-vr/game.html
 
-Great serioes of blog posts explaininig how to build Web VR game using AFrame (aframe.io) - https://www.smashingmagazine.com/2019/03/virtual-reality-endless-runner-game-vr-part-1/
+Great series of blog posts explaininig how to build Web VR game using AFrame (aframe.io) - https://www.smashingmagazine.com/2019/03/virtual-reality-endless-runner-game-vr-part-1/
 
 
 Some links:
