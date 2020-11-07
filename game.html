@@ -1,77 +1,167 @@
+<!--
+Created by Alvin Wan (alvinwan.com)
+-->
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>360&deg; Image Gallery</title>
-    <meta name="description" content="360&deg; Image Gallery - A-Frame">
-    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
-    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
-    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
-    <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
-    <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
-    <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
-    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
-    
-    <script src="components/set-image.js"></script>
+    <title>Pengui - pain relief/distraction. With or without VR headset</title>
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alvinwan/aframe-low-poly@0.0.2/dist/aframe-low-poly.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alvinwan/mirrorvr@0.2.3/dist/mirrorvr.min.js"></script>
+    <script src="./assets/ocean.js"></script>
+    <script src="./assets/ergo.js"></script>
   </head>
   <body>
-    <a-scene>
+    <a-scene fog="type: linear; color: #a3d0ed; near:5; far:20">
+
+      <a-sky color="#a3d0ed"></a-sky>
+
+      <!-- Mixins -->
       <a-assets>
-        <img id="city" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
-        <img id="city-thumb" crossorigin="anonymous" src="https://vignette.wikia.nocookie.net/pingu/images/b/ba/Pingu_the_penguin.png/revision/latest?cb=20131217134349">
-        <img id="cubes-thumb" crossorigin="anonymous" src="https://2.bp.blogspot.com/__0DRQYEbLs0/RsVuVsVcV9I/AAAAAAAAALs/Z2DOm1LU2Bo/s320/pingu+penguin.gif">
-        <img id="sechelt-thumb" crossorigin="anonymous" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f5fd11b-3372-4b65-a953-2ad89287b453/dc7vp30-07c0f28f-3126-43f6-a4d2-1afbef8af802.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMWY1ZmQxMWItMzM3Mi00YjY1LWE5NTMtMmFkODkyODdiNDUzXC9kYzd2cDMwLTA3YzBmMjhmLTMxMjYtNDNmNi1hNGQyLTFhZmJlZjhhZjgwMi5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.o9XPNgzcAOQqGnXAGY00dkIf3SFzUAs6vc84dB86UzQ">
-        <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
-        <img id="cubes" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
-        <img id="sechelt" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
-
-        <!-- Image link template to be reused. -->
-        <script id="link" type="text/html">
-          <a-entity class="link"
-            geometry="primitive: plane; height: 1; width: 1"
-            material="shader: flat; src: ${thumb}"
-            event-set__1="_event: mousedown; scale: 1 1 1"
-            event-set__2="_event: mouseup; scale: 1.8 1.8 1"
-            event-set__3="_event: mouseenter; scale: 1.8 1.8 1"
-            event-set__4="_event: mouseleave; scale: 1 1 1"
-            set-image="on: click; target: #image-360; src: ${src}"
-            sound="on: click; src: #click-sound"></a-entity>
-        </script>
+        <a-mixin id="foliage" geometry="
+            primitive: cone;
+            segments-height: 1;
+            segments-radial:4;
+            radius-bottom:0.3;"
+           material="color:white;flat-shading: true;"></a-mixin>
+        <a-mixin id="trunk" geometry="
+            primitive: box;
+            height:0.5;
+            width:0.1;
+            depth:0.1;"
+           material="color:white;"></a-mixin>
+         <a-mixin id="text" text="
+             font:exo2bold;
+             anchor:center;
+             align:center;"></a-mixin>
+         <a-mixin id="title" text="
+             font:exo2bold;
+             height:40;
+             width:40;
+             opacity:0.75;
+             anchor:center;
+             align:center;"></a-mixin>
+         <a-mixin id="copy" text="
+             font:exo2bold;
+             height:5;
+             width:5;
+             opacity:0.75;
+             anchor:center;
+             align:center;"></a-mixin>
+         <a-mixin id="heading" text="
+             font:exo2bold;
+             height:10;
+             width:10;
+             opacity:0.75;
+             anchor:center;
+             align:center;"></a-mixin>
+        <img id="pingui" crossorigin="anonymous" src="https://vignette.wikia.nocookie.net/pingu/images/b/ba/Pingu_the_penguin.png/revision/latest?cb=20131217134349">
       </a-assets>
-      
-      <a-asset-item id="cityModel" src="https://deniskovalenko.github.io/junction-2020-vr/winter-iceland/WinterIslandv2.gltf"></a-asset-item>       
-      <a-gltf-model src="#cityModel"></a-gltf-model>
-    <a-entity id="lightSphere" geometry="primitive: sphere; radius: 0.2" material="shader: flat" light="type: point; color: #FFF" position="-4 3 -4"
-               animation="property: position; to: 0 1.25 -5; dir: alternate; loop: true"></a-entity>
-      <a-entity particle-system="preset: snow; particleCount: 10000"></a-entity>
-      <a-entity particle-system="preset: default; color: #515; particleCount: 1000; rotationAngle: 2; direction: -1;" position="0 0 -5"></a-entity>
 
-      <a-entity id="sphere" geometry="primitive: sphere; radius: 1.25" material="color: #EF2D5E" position="0 1.25 -5"
-                 animation="property: scale; dir: alternate; dur: 100; to: 1.1 1.1 1.1; loop: true"></a-entity> 
-<!--       <a-entity id="box" geometry="primitive: box; width: 1; depth: 1; height: 1" position="-1 0.5 -3" material="color: #4CC3D9"></a-entity> -->
-<!--       <a-entity id="cylinder" geometry="primitive: cylinder; radius: 0.5; height: 1.5" position="1 0.75 -3" material="color: #FFC65D"></a-entity> -->
+      <!-- Lights -->
+      <a-light type="directional" castShadow="true" intensity="0.4" color="#D0EAF9;" position="5 3 1"></a-light>
+      <a-light intensity="0.8" type="ambient" color="#B4C5EC"></a-light>
 
-<!--       <a-entity id="plane" geometry="primitive: plane; width: 10000; height: 10000" material="color: #333; src: #groundTexture; repeat: 10000 10000; transparent: true; metalness: 0.6; roughness: 0.4" rotation="-90 0 0"></a-entity> -->
-<!--       <a-entity id="sky" geometry="primitive: sphere; radius: 100" material="color: #666; shader: flat; side: back"></a-entity> -->
-      <a-entity light="type: ambient; color: #444"></a-entity>
-<!--       <a-entity light="type: directional; color: #AAA" position="-1 2 0"></a-entity> -->
-      <!-- 360-degree image. -->
-      <a-sky id="image-360" radius="30" src="#city"></a-sky>
-
-      <!-- Image links. -->
-      <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
-        <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
-      </a-entity>
-         <a-box position="-20 0.5 -3" rotation="0 45 0" color="#000"
-           event-set__enter="_event: mouseenter; color: #FFF"
-           event-set__leave="_event: mouseleave; color: #000"></a-box>
-      <a-entity geometry="primitive:box;" material="shader:gif;src:url(nyancat.gif);color:green;opacity:.8"></a-entity>
-      <!-- Camera + cursor. -->
-      <a-camera>
-        <a-cursor id="cursor"></a-cursor>
+      <!-- Camera -->
+      <a-camera camera-listener lane-controls position="0 0 2.5">
+          <a-entity id="cursor-mobile" cursor="fuse: true; fuseTimeout: 250"
+                position="0 0 -1"
+                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                material="color: white; shader: flat"
+                scale="0.5 0.5 0.5"
+                    raycaster="far: 50; interval: 1000; objects: .clickable"></a-entity>
+          <a-animation begin="fusing" easing="ease-in" attribute="scale"
+             fill="backwards" from="1 1 1" to="0.2 0.2 0.2" dur="250"></a-animation>
       </a-camera>
+
+      <!-- Icebergs -->
+      <lp-cone class="iceberg" amplitude-variance="0.25" segments-radial="5" segments-height="3" height="1" radius-top="0.15" radius-bottom="0.5" position="3 -0.1 -1.5">
+        <a-animation attribute="rotation" from="-5 0 0" to="5 0 0" repeat="indefinite" direction="alternate"></a-animation>
+        <a-animation attribute="position" from="3 -0.2 -1.5" to="4 -0.2 -2.5" repeat="indefinite" direction="alternate" dur="12000" easing="linear"></a-animation>
+      </lp-cone>
+      <lp-cone class="iceberg" amplitude="0.12" segments-radial="7" segments-height="3" height="0.5" radius-top="0.25" radius-bottom="0.35" position="-3 -0.1 -0.5">
+        <a-animation attribute="rotation" from="0 0 -5" to="5 0 0" repeat="indefinite" direction="alternate" dur="1500"></a-animation>
+        <a-animation attribute="position" from="-4 -0.2 -0.5" to="-2 -0.2 -0.5" repeat="indefinite" direction="alternate" dur="15000" easing="linear"></a-animation>
+      </lp-cone>
+        
+<!--     Fun part     -->
+<!--       <lp-cone class="iceberg" amplitude="0.1" segments-radial="6" segments-height="2" height="0.5" radius-top="0.25" radius-bottom="0.25" position="-5 -0.2 -3.5">
+        <a-animation attribute="rotation" from="5 0 -5" to="5 0 0" repeat="indefinite" direction="alternate" dur="800"></a-animation>
+        <a-animation attribute="position" from="-3 -0.2 -3.5" to="-5 -0.2 -5.5" repeat="indefinite" direction="alternate" dur="15000" easing="linear"></a-animation>
+      </lp-cone> -->
+        
+
+        <lp-cone class="iceberg" material="side: double" rotation="90 0 10" amplitude="0.3" segments-radial="6" segments-height="2" height="100" radius-top="30" radius-bottom="5" position="0 -0.1 -5">
+        <a-animation attribute="rotation" from="89 1 11" to="91 1 9" repeat="indefinite" direction="alternate" dur="800"></a-animation>
+        <a-animation attribute="position" from="0 -1 -5" to="-0.3 3 -10" repeat="indefinite" direction="alternate" dur="15000" easing="linear"></a-animation>
+      </lp-cone>
+      
+      
+<!--     Fun part     -->
+      <!-- Ocean -->
+      <a-ocean depth="50" width="50" amplitude="0" amplitude-variance="0.1" speed="1.5" speed-variance="1" opacity="1" density="50"></a-ocean>
+      <a-ocean depth="50" width="50" opacity="0.5" amplitude="0" amplitude-variance="0.15" speed="1.5" speed-variance="1" density="50"></a-ocean>
+
+      <!-- Platform -->
+      <lp-cone amplitude="0.05" amplitude-variance="0.05" scale="2 2 2" shadow position="0 -3.5 -1.5" rotation="90 0 0" radius-top="1.9" radius-bottom="1.9" segments-radial="20" segments-height="20" height="20" emissive="#005DED" emissive-intensity="0.1">
+        <a-entity id="tree-container" position="0 .5 -1.5" rotation="-90 0 0">
+
+          <!-- Trees -->
+          <a-entity data-tree-position-index="1" class="tree" id="template-tree-center" shadow scale="0.3 0.3 0.3" position="0 0.6 0">
+            <a-entity mixin="foliage"></a-entity>
+            <a-entity mixin="trunk" position="0 -0.5 0"></a-entity>
+            <a-animation attribute="position" ease="linear" from="0 0.6 -7" to="0 0.6 1.5" dur="5000"></a-animation>
+          </a-entity>
+
+          <a-entity data-tree-position-index="0" class="tree" id="template-tree-left" shadow scale="0.3 0.3 0.3" position="-0.5 0.55 0">
+            <a-entity mixin="foliage"></a-entity>
+            <a-entity mixin="trunk" position="0 -0.5 0"></a-entity>
+            <a-animation attribute="position" ease="linear" from="-0.5 0.55 -7" to="-0.5 0.55 1.5" dur="5000"></a-animation>
+          </a-entity>
+
+          <a-entity data-tree-position-index="2" class="tree" id="template-tree-right" shadow scale="0.3 0.3 0.3" position="0.5 0.55 0">
+            <a-entity mixin="foliage"></a-entity>
+            <a-entity mixin="trunk" position="0 -0.5 0"></a-entity>
+            <a-animation attribute="position" ease="linear" from="0.5 0.55 -7" to="0.5 0.55 1.5" dur="5000"></a-animation>
+          </a-entity>
+
+          <!-- Score -->
+          <a-text id="score" value="" mixin="text" height="40" width="40" position="0 1.2 -3" opacity="0.75"></a-text>
+
+          <!-- Menus -->
+          <a-entity id="menu-container">
+            <a-entity id="start-menu" position="0 1.1 -3">
+              <a-entity id="start-copy" position="0 1 0">
+                <a-text value="Turn left and right to move your player, and avoid the penguins!" mixin="copy"></a-text>
+                <a-text value="Start" position="0 0.75 0" mixin="heading"></a-text>
+                <a-box id="start-button" position="0 0.65 -0.05" width="1.5" height="0.6" depth="0.1"></a-box>
+              </a-entity>
+              <a-text value="Pengui" mixin="title"></a-text>
+            </a-entity>
+            <a-entity id="game-over" position="0 1.1 -3">
+              <a-text value="?" mixin="heading" id="game-score" position="0 1.7 0"></a-text>
+              <a-text value="Score" mixin="copy" position="0 1.2 0"></a-text>
+              <a-entity id="game-over-copy">
+                <a-text value="Restart" mixin="heading" position="0 0.7 0"></a-text>
+                <a-box id="restart-button" position="0 0.6 -0.05" width="2" height="0.6" depth="0.1"></a-box>
+              </a-entity>
+              <a-text value="Try again <3" mixin="title"></a-text>
+            </a-entity>
+          </a-entity>
+
+          <!-- Player -->
+          <a-entity id="player" player>
+            <a-sphere radius="0.05">
+              <a-animation repeat="indefinite" direction="alternate" attribute="position" ease="ease-in-out" from="0 0.5 0.6" to="0 0.525 0.6"></a-animation>
+              <a-animation repeat="indefinite" direction="alternate" attribute="radius" from="0.05" to="0.055" dur="1500"></a-animation>
+              <a-light type="point" intensity="0.35" color="#FF440C">
+                <a-animation repeat="indefinite" direction="alternate-reverse" attribute="intensity" ease="ease-in-out" from="0.35" to="0.5"></a-animation>
+              </a-light>
+            </a-sphere>
+          </a-entity>
+        </a-entity>
+      </lp-cone>
     </a-scene>
   </body>
 </html>
