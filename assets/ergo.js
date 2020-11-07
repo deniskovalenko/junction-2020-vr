@@ -114,9 +114,9 @@ function addTreesRandomly(
     }
   });
 
-  if (mobileCheck()) {
-    mirrorVR.notify('addTrees', position_indices);
-  }
+  // if (mobileCheck()) {
+  //   mirrorVR.notify('addTrees', position_indices);
+  // }
   return numberOfTreesAdded;
 }
 
@@ -128,7 +128,7 @@ function addTreesRandomlyLoop({intervalLength = 500} = {}) {
  * COLLISIONS *
  **************/
 
-const POSITION_Z_OUT_OF_SIGHT = 1;
+const POSITION_Z_OUT_OF_SIGHT = 3;
 const POSITION_Z_LINE_START = 0.6;
 const POSITION_Z_LINE_END = 0.7;
 
@@ -186,13 +186,14 @@ function teardownScore() {
 function addScoreForTree(tree_id) {
   score += 1;
   countedTrees.add(tree_id);
+  //todo -> after score reaches X, move to new "level. "
 }
 
 function updateScoreDisplay() {
   scoreDisplay.setAttribute('value', score);
-  if (mobileCheck()) {
-    mirrorVR.notify('score', score);
-  }
+  // if (mobileCheck()) {
+  //   mirrorVR.notify('score', score);
+  // }
 }
 
 /********
@@ -259,34 +260,34 @@ function showStartMenu() {
  ************/
 
 function setupMirrorVR() {
-  mirrorVR.init({
-    roomId: 'ergo',
-    state: {
-      startGame: {
-        onNotify: function(data) {
-          hideAllMenus();
-          setupScore();
-          updateScoreDisplay();
-        }
-      },
-      gameOver: {
-        onNotify: function(data) {
-          gameOver();
-        }
-      },
-      addTrees: {
-        onNotify: function(position_indices) {
-          position_indices.forEach(addTreeTo)
-        }
-      },
-      score: {
-        onNotify: function(data) {
-          score = data;
-          updateScoreDisplay();
-        }
-      }
-    }
-  })
+  // mirrorVR.init({
+  //   roomId: 'ergo',
+  //   state: {
+  //     startGame: {
+  //       onNotify: function(data) {
+  //         hideAllMenus();
+  //         setupScore();
+  //         updateScoreDisplay();
+  //       }
+  //     },
+  //     gameOver: {
+  //       onNotify: function(data) {
+  //         gameOver();
+  //       }
+  //     },
+  //     addTrees: {
+  //       onNotify: function(position_indices) {
+  //         position_indices.forEach(addTreeTo)
+  //       }
+  //     },
+  //     score: {
+  //       onNotify: function(data) {
+  //         score = data;
+  //         updateScoreDisplay();
+  //       }
+  //     }
+  //   }
+  // })
 }
 
 /********
@@ -300,9 +301,9 @@ function gameOver() {
   teardownTrees();
   teardownScore();
 
-  if (mobileCheck()) {
-    mirrorVR.notify('gameOver', {});
-  }
+  // if (mobileCheck()) {
+  //   mirrorVR.notify('gameOver', {});
+  // }
 }
 
 function startGame() {
@@ -314,15 +315,15 @@ function startGame() {
   updateScoreDisplay();
   addTreesRandomlyLoop();
 
-  if (mobileCheck()) {
-    mirrorVR.notify('startGame', {})
-  }
+  // if (mobileCheck()) {
+  //   mirrorVR.notify('startGame', {})
+  // }
 }
 
 setupControls();  // TODO: AFRAME.registerComponent has to occur before window.onload?
 
 window.onload = function() {
-  setupMirrorVR();
+  // setupMirrorVR();
   setupAllMenus();
   setupScore();
   setupTrees();
