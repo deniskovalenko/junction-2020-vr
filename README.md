@@ -3,14 +3,14 @@ VR has proven to relief pain. Most famous game is SnowWorld VR, but it's not acc
 
 We want to create game that allows to distract oneself away from pain with fun VR experience, that can be used anywhere, from any mobile device.
 
-That's why we're using WebVR. Works on a phone, on a phone with VR headset (like Google CardBoard -> I bought "iBOX" from local shop for 13EUR), or on dedicated VR headsets.
+That's why we're using WebVR. Works on a phone with or without (like Google CardBoard -> I bought "iBOX" from local shop for 13EUR), desktop computers and on dedicated VR headsets
 
-Try it out - https://deniskovalenko.github.io/junction-2020-vr/game.html
+Try it out!  https://deniskovalenko.github.io/junction-2020-vr/
 
 Great series of blog posts explaininig how to build Web VR game using AFrame (aframe.io) - https://www.smashingmagazine.com/2019/03/virtual-reality-endless-runner-game-vr-part-1/
 
 
-Some links:
+Some links with research:
 https://blogs.nvidia.com/blog/2016/07/21/vr-helps-pain-relief/
 
 https://www.bclocalnews.com/news/hospitals-using-virtual-reality-headsets-to-distract-kids-from-pain-fraser-health/
