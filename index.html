@@ -1,216 +1,93 @@
-<!--
-Created by Alvin Wan (alvinwan.com)
--->
-<!DOCTYPE html>
 <html>
   <head>
-    <title>Pengui - pain relief/distraction. With or without VR headset</title>
-    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/alvinwan/aframe-low-poly@0.0.2/dist/aframe-low-poly.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
-<!--     <script src="https://cdn.jsdelivr.net/gh/alvinwan/mirrorvr@0.2.3/dist/mirrorvr.min.js"></script> -->
-    <script src="./assets/ocean.js"></script>
-    <script src="./assets/ergo.js"></script>
+    <title>Junction 2020 - VR Game that you can play on your phone, PC, or VR Headset!</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    
   </head>
   <body>
-    <a-scene fog="type: linear; color: #a3d0ed; near:10; far:30">
-      
-<!--     <a-scene stats> -->
+    <main>
+      <h1>VR Pain Relief Game</h1> 
+      <section id="start">
+        <p> Dealing with pain and treatment anxiety is challenging, especially for kids. </p>
+        <p>Research proves that Virtual Reality (VR) experience can reduce pain and anxiety during procedures. 
+          It's applied already in certain hospitals, but using traditional VR headsets is out of reach for many still. 
+        </p>
+        <p>That's why we think it's crucial to bring this tool to more people, by building VR game that can be used with any device, right from the browser.
+          Tune in to see what we've built during the weekend at Junction Connected 2020!
+        </p>
+      </section>
 
-      <a-sky color="#a3d0ed"></a-sky>
-
-      <!-- Mixins -->
-      <a-assets>
-        <a-mixin id="foliage" geometry="
-            primitive: cone;
-            segments-height: 1;
-            segments-radial:4;
-            radius-bottom:0.3;"
-           material="color:white;flat-shading: true;"></a-mixin>
-        <a-mixin id="trunk" geometry="
-            primitive: box;
-            height:0.5;
-            width:0.1;
-            depth:0.1;"
-           material="color:white;"></a-mixin>
-         <a-mixin id="text" text="
-             font:exo2bold;
-             anchor:center;
-             align:center;"></a-mixin>
-         <a-mixin id="title" text="
-             font:exo2bold;
-             height:60;
-             width:30;
-             opacity:0.75;
-             anchor:center;
-             align:center;"></a-mixin>
-         <a-mixin id="copy" text="
-             font:exo2bold;
-             height:5;
-             width:5;
-             opacity:0.75;
-             anchor:center;
-             align:center;"></a-mixin>
-         <a-mixin id="heading" text="
-             font:exo2bold;
-             height:10;
-             width:10;
-             opacity:0.75;
-             anchor:center;
-             align:center;"></a-mixin>
-<!--         <img id="pingui" crossorigin="anonymous" src="https://vignette.wikia.nocookie.net/pingu/images/b/ba/Pingu_the_penguin.png/revision/latest?cb=20131217134349"> -->
-<!--         <a-asset-item id="pingui" src="https://deniskovalenko.github.io/junction-2020-vr/Pingu_obj.obj"></a-asset-item> -->
-<!--         <a-asset-item id="pingui2" src="https://deniskovalenko.github.io/junction-2020-vr/3d/lonely_little_penguin/scene.gltf"></a-asset-item> -->
-        <a-asset-item id="pingui_colored" src="https://deniskovalenko.github.io/junction-2020-vr/colored_pengu.glb"></a-asset-item>
-        <a-asset-item id="pingui_swimming" src="https://deniskovalenko.github.io/junction-2020-vr/3d/penguin_swimming/scene.gltf"></a-asset-item>
+      <section id="content">
+        <h2>What we've built</h2>
+        <p>We'be built VR game that allows to distract a patient, and engage in plesant activity</p>
+        <p>Game can be played on any device, with or without VR headsed, levereging WebVR, threeJS and AFrame framework</p>
+      </section>
+      <section id="demo">
+        <h2>Try it out</h2>
+        <p>You can play the game from your browser. Tested on desktop (Chrome), IOS (Safari)</p>
         
-      </a-assets>
-
-      <!-- Lights -->
-      <a-light type="directional" castshadow="true" intensity="0.4" color="#D0EAF9;" position="5 3 1"></a-light>
-      <a-light intensity="0.8" type="ambient" color="#B4C5EC"></a-light>
-
-      <!-- Camera -->
-      
-       <a-camera lane-controls position="0 0 4">
-          <a-entity id="cursor-mobile" cursor="fuse: true; fuseTimeout: 250"
-                position="0 0 -1"
-                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                material="color: white; shader: flat"
-                scale="0.5 0.5 0.5"
-                raycaster="far: 50; interval: 1000; objects: .clickable">
-         </a-entity>
-          <a-animation begin="fusing" easing="ease-in" attribute="scale"
-             fill="backwards" from="1 1 1" to="0.2 0.2 0.2" dur="250"></a-animation>
-      </a-camera>
-
-      <!-- Icebergs -->
-      <lp-cone class="iceberg" amplitude-variance="0.25" segments-radial="5" segments-height="3" height="1" radius-top="0.15" radius-bottom="0.5" position="3 -0.1 -1.5">
-        <a-animation attribute="rotation" from="-5 0 0" to="5 0 0" repeat="indefinite" direction="alternate"></a-animation>
-        <a-animation attribute="position" from="3 -0.2 -1.5" to="4 -0.2 -2.5" repeat="indefinite" direction="alternate" dur="12000" easing="linear"></a-animation>
-      </lp-cone>
-      <lp-cone class="iceberg" amplitude="0.12" segments-radial="7" segments-height="3" height="0.5" radius-top="0.25" radius-bottom="0.35" position="-3 -0.1 -0.5">
-        <a-animation attribute="rotation" from="0 0 -5" to="5 0 0" repeat="indefinite" direction="alternate" dur="1500"></a-animation>
-        <a-animation attribute="position" from="-4 -0.2 -0.5" to="-2 -0.2 -0.5" repeat="indefinite" direction="alternate" dur="15000" easing="linear"></a-animation>
-      </lp-cone>
-      
-      <lp-cone class="iceberg" amplitude-variance="0.25" segments-radial="5" segments-height="3" height="1" radius-top="0.15" radius-bottom="0.5" position="5 -0.1 -6.5">
-        <a-animation attribute="rotation" from="-5 0 0" to="5 0 0" repeat="indefinite" direction="alternate"></a-animation>
-        <a-animation attribute="position" from="5 -0.2 -6.5" to="6 -0.2 -7.5" repeat="indefinite" direction="alternate" dur="12000" easing="linear"></a-animation>
-      </lp-cone>
-      
-      <lp-cone class="iceberg" amplitude-variance="0.25" segments-radial="5" segments-height="3" height="1" radius-top="0.15" radius-bottom="0.5" position="-5 -0.1 -6.5">
-        <a-animation attribute="rotation" from="-5 0 0" to="5 0 0" repeat="indefinite" direction="alternate"></a-animation>
-        <a-animation attribute="position" from="-5 -0.2 -6.5" to="-6 -0.2 -7.5" repeat="indefinite" direction="alternate" dur="12000" easing="linear"></a-animation>
-      </lp-cone>
-      
+         <p>
+          <img src="assets/gameplay-1.gif" alt="Gameplay">
+        </p>
+        <p>1. <strong>iPhone users </strong> -> go first to <a href="setup.html">setup page</a>, and grant permission to motion sensor, and make sure you can navigate by moving your phone  </p>
+        <p>  * 1.1 I would recommend pressing aA in Safari and selecting "hide toolbar", for more immersive feeling.</p>
+        <p>2. <strong>Android</strong> -> go straight to the game</p>
         
-<!--     Ice Cave     -->
-
-
-        <lp-cone class="iceberg" material="side: double" rotation="90 0 10" amplitude="0.3" segments-radial="9" segments-height="2" height="100" radius-top="30" radius-bottom="10" position="0 -0.1 -5">
-        <a-animation attribute="rotation" from="88 1 11" to="92 1 9" repeat="indefinite" direction="alternate" dur="2400"></a-animation>
-        <a-animation attribute="position" from="0 -1 -5" to="-0.3 3 -10" repeat="indefinite" direction="alternate" dur="15000" easing="linear"></a-animation>
-      </lp-cone>
+        <p>
+            <a class="button" href="game.html">Go to the game!</a>
+        </p>
+      </section>
       
-      <!-- Test penguin -->
-<!--       <a-entity gltf-model="#pingui2" position="0 0.7 -3" scale = "0.1 0.1 0.1"></a-entity> -->
-<!--       <a-entity gltf-model="#pingui_swimming" position="0 0.7 0" scale = "0.06 0.06 0.06" rotation="0 -80 0"></a-entity> -->
-<!--       <a-obj-model src="#pingui" position="0 1 -3" scale = "0.1 0.1 0.1" rotation="0 0 0"></a-obj-model> -->
+      <section id="troubleshooting">
+        <h2>Troubleshooting</h2>
+        <p>Unfortunately, WebVR might not work smoothly on all Android devices/browsers. 
+          If you get glitchy/laggy experience you can try another browser,try on your computer, or watch demo video below!
+        </p>
+  
+      </section>
       
-<!--    Ice Cave   -->
-      <!-- Ocean -->
-<!--       <a-ocean depth="50" width="50" amplitude="0" amplitude-variance="0.1" speed="1.5" speed-variance="1" opacity="1" density="50"></a-ocean> -->
-<!--       <a-ocean depth="50" width="50" opacity="0.5" amplitude="0" amplitude-variance="0.15" speed="1.5" speed-variance="1" density="50"></a-ocean> -->
+       
+      <section id="demo_recording">
+        <h2>Demo Video</h2>
+        <p>
+        </p>
+  
+      </section>
+      
+       
+      <section id="credits">
+        <h2>Credits</h2>
+        <p>Big thanks to A-Frame (<a href="https://aframe.io/">aframe.io</a>) for great tutorials 
+           and to Alvin Wan and his 
+          <a href="https://www.smashingmagazine.com/2019/03/virtual-reality-endless-runner-game-vr-part-1/">blog post series</a> on building VR game using A-Frame, 
+          whose examples and explainatons helped us build the game in one day with no prior experience in game development
 
-      <!-- Platform -->
-      <lp-cone amplitude="0.05" amplitude-variance="0.05" scale="2 2 2" shadow position="0 -3.5 -1.5" rotation="90 0 0" radius-top="1.9" radius-bottom="1.9" segments-radial="20" segments-height="20" height="20" emissive="#005DED" emissive-intensity="0.1">
-        <a-entity id="tree-container" position="0 .5 -1.5" rotation="-90 0 0">
+        </p>
+  
+      </section>
+      
+      <section id="refernces">
+        <h3>References:</h3>
+        <ul>
+          <li>How VR Can Help with Chronic Pain Relief - <a href=https://blogs.nvidia.com/blog/2016/07/21/vr-helps-pain-relief/">https://blogs.nvidia.com/blog/2016/07/21/vr-helps-pain-relief/</a></li>
+          <li>SnowWorld melts away pain for burn patients - <a href="https://www.geekwire.com/2018/snowworld-melts-away-pain-burn-patients-using-virtual-reality-snowballs">https://www.geekwire.com/2018/snowworld-melts-away-pain-burn-patients-using-virtual-reality-snowballs/</a></li>
+<!--           <li></li> -->
+<!--           <li></li> -->
+        </ul>
+      </section>
+            
+       <section id="authors">
+        <h3>Authors:</h3>
+            <p>Elizaveta Lebedeva - <a href="http://elizavetalebedeva.com">blog</a></p>
+            <p>Denys Kovalenko - <a href="https://deniskovalenko.com/">blog</a></p>
+      </section>
+            
+            <p>Code - https://github.com/deniskovalenko/junction-2020-vr</p>
+      
+    </main>
 
-          <!-- Penguins -->
-          <a-entity data-tree-position-index="1" class="tree" id="template-tree-center" shadow scale="0.3 0.3 0.3" position="0 0.6 0">
-            <a-entity gltf-model="#pingui_swimming" scale = "0.25 0.25 0.25" rotation="0 -90 0"></a-entity>
-<!--             <a-obj-model src="#pingui3" scale = "0.06 0.06 0.06"></a-obj-model> -->
-<!--             <a-entity mixin="foliage"></a-entity>
-            <a-entity mixin="trunk" position="0 -0.5 0"></a-entity> -->
-            <a-animation attribute="position" ease="linear" from="0 0.6 -5" to="0 0.6 3.5" dur="12000"></a-animation>
-          </a-entity>
-
-          <a-entity data-tree-position-index="0" class="tree" id="template-tree-left" shadow scale="0.3 0.3 0.3" position="-0.5 0.55 0">
-            <a-entity gltf-model="#pingui_swimming" scale = "0.25 0.25 0.25" rotation="0 -30 0"></a-entity>
-<!--             <a-entity mixin="foliage"></a-entity>
-            <a-entity mixin="trunk" position="0 -0.5 0"></a-entity> -->
-            <a-animation attribute="position" ease="linear" from="-0.5 0.55 -5" to="-0.5 0.55 3.5" dur="12000"></a-animation>
-          </a-entity>
-
-          <a-entity data-tree-position-index="2" class="tree" id="template-tree-right" shadow scale="0.3 0.3 0.3" position="0.5 0.55 0">
-            <a-entity gltf-model="#pingui_swimming" scale = "0.25 0.25 0.25" rotation="0 -120 0"></a-entity>
-<!--             <a-entity mixin="foliage"></a-entity>
-            <a-entity mixin="trunk" position="0 -0.5 0"></a-entity> -->
-            <a-animation attribute="position" ease="linear" from="0.5 0.55 -5" to="0.5 0.55 4.6" dur="12000"></a-animation>
-          </a-entity>
-          
-          
-        <!--  Bosses templates           -->
-           <a-entity data-tree-position-index="2" class="tree" id="template-boss-right" shadow scale="0.3 0.3 0.3" position="0.5 0.55 0">
-            <a-entity gltf-model="#pingui_colored" scale = "0.3 0.3 0.3" rotation="0 -120 0"></a-entity>
-<!--             <a-entity mixin="foliage"></a-entity>
-            <a-entity mixin="trunk" position="0 -0.5 0"></a-entity> -->
-            <a-animation attribute="position" ease="linear" from="0.5 1 -10" to="0.5 0.55 4.6" dur="12000"></a-animation>
-          </a-entity>
-          
-            <a-entity data-tree-position-index="0" class="tree" id="template-boss-left" shadow scale="0.3 0.3 0.3" position="-0.5 0.55 0">
-            <a-entity gltf-model="#pingui_colored" scale = "0.3 0.3 0.3" rotation="0 -30 0"></a-entity>
-<!--             <a-entity mixin="foliage"></a-entity>
-            <a-entity mixin="trunk" position="0 -0.5 0"></a-entity> -->
-            <a-animation attribute="position" ease="linear" from="-0.5 1 -10" to="-0.5 0.55 3.5" dur="12000"></a-animation>
-          </a-entity>
-          
-           <a-entity data-tree-position-index="1" class="tree" id="template-boss-center" shadow scale="0.3 0.3 0.3" position="0 0.6 0">
-            <a-entity gltf-model="#pingui_colored" scale = "0.3 0.3 0.3" rotation="0 -90 0"></a-entity>
-<!--             <a-obj-model src="#pingui3" scale = "0.06 0.06 0.06"></a-obj-model> -->
-<!--             <a-entity mixin="foliage"></a-entity>
-            <a-entity mixin="trunk" position="0 -0.5 0"></a-entity> -->
-            <a-animation attribute="position" ease="linear" from="0 1 -10" to="0 0.6 3.5" dur="12000"></a-animation>
-          </a-entity>
-          
-
-          <!-- Score -->
-          <a-text id="score" value="" mixin="text" height="40" width="40" position="0 3 -3" opacity="0.75"></a-text>
-
-          <!-- Menus -->
-          <a-entity id="menu-container">
-            <a-entity id="start-menu" position="0 1.4 -3">
-              <a-entity id="start-copy" position="0 1.3 0">
-                <a-text value="Turn your head to catch penguins!" mixin="copy"></a-text>
-                <a-text value="Start" position="0 0.75 0" mixin="heading"></a-text>
-                <a-box id="start-button" position="0 0.65 -0.05" width="1.5" height="0.6" depth="0.1"></a-box>
-              </a-entity>
-              <a-text value="Pengui" position="0 0.3 0" mixin="title"></a-text>
-            </a-entity>
-            <a-entity id="game-over" position="0 1.1 -3">
-              <a-text value="?" mixin="heading" id="game-score" position="0 1.7 0"></a-text>
-              <a-text value="Score" mixin="copy" position="0 1.2 0"></a-text>
-              <a-entity id="game-over-copy">
-                <a-text value="Restart" mixin="heading" position="0 0.7 0"></a-text>
-                <a-box id="restart-button" position="0 0.6 -0.05" width="2" height="0.6" depth="0.1"></a-box>
-              </a-entity>
-              <a-text value="Try again!" mixin="title"></a-text>
-            </a-entity>
-          </a-entity>
-
-          <!-- Player -->
-           <a-entity id="player" player>
-            <a-sphere radius="0.05">
-              <a-animation repeat="indefinite" direction="alternate" attribute="position" ease="ease-in-out" from="0 0.5 0.6" to="0 0.525 0.6"></a-animation>
-              <a-animation repeat="indefinite" direction="alternate" attribute="radius" from="0.05" to="0.055" dur="1500"></a-animation>
-              <a-light type="point" intensity="0.35" color="#FF440C">
-                <a-animation repeat="indefinite" direction="alternate-reverse" attribute="intensity" ease="ease-in-out" from="0.35" to="0.5"></a-animation>
-              </a-light>
-            </a-sphere>
-          </a-entity>
-        </a-entity>
-      </lp-cone>
-    </a-scene>
+    
   </body>
+  
 </html>
