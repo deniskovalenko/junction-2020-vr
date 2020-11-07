@@ -49,6 +49,9 @@ function setupControls() {
 var templateTreeLeft;
 var templateTreeCenter;
 var templateTreeRight;
+var templateBossLeft;
+var templateBossCenter;
+var templateBossRight;
 var templates;
 var treeContainer;
 var numberOfTrees = 0;
@@ -58,12 +61,18 @@ function setupTrees() {
   templateTreeLeft    = document.getElementById('template-tree-left');
   templateTreeCenter  = document.getElementById('template-tree-center');
   templateTreeRight   = document.getElementById('template-tree-right');
+  templateBossRight   = document.getElementById('template-boss-right');
+  templateBossLeft   =  document.getElementById('template-boss-left');
+  templateBossCenter   = document.getElementById('template-boss-center');
   templates           = [templateTreeLeft, templateTreeCenter, templateTreeRight];
   treeContainer       = document.getElementById('tree-container');
 
   removeTree(templateTreeLeft);
   removeTree(templateTreeRight);
   removeTree(templateTreeCenter);
+  removeTree(templateBossRight);
+  removeTree(templateBossLeft);
+  removeTree(templateBossCenter);
 }
 
 function teardownTrees() {
@@ -85,14 +94,21 @@ function addTreeTo(position_index) {
   addTree(template.cloneNode(true));
 }
 
+function addObjectByTemplate(template) {
+  addTree(template.cloneNode(true));
+}
+
 /**
  * Add any number of trees across different lanes, randomly.
  **/
 function addTreesRandomly(
   {
-    probTreeLeft = 0.5,
-    probTreeCenter = 0.5,
-    probTreeRight = 0.5,
+    probTreeLeft = 0.2,
+    probTreeCenter = 0.2,
+    probTreeRight = 0.2,
+    probSuperBossLeft = 0.03,
+    probSuperBossCenter = 0.03,
+    probSuperBossRight = 0.03,
     maxNumberTrees = 1
   } = {}) {
 
@@ -100,6 +116,9 @@ function addTreesRandomly(
     {probability: probTreeLeft,   position_index: 0},
     {probability: probTreeCenter, position_index: 1},
     {probability: probTreeRight,  position_index: 2},
+    {probability: probSuperBossLeft,  position_index: 0, is_boss: true, template: templateBossLeft},    
+    {probability: probSuperBossCenter,  position_index: 1, is_boss: true, template: templateBossCenter},
+    {probability: probSuperBossRight,  position_index: 2, is_boss: true, template: templateBossRight},
   ]
   shuffle(trees);
 
@@ -107,7 +126,13 @@ function addTreesRandomly(
   var position_indices = [];
   trees.forEach(function (tree) {
     if (Math.random() < tree.probability && numberOfTreesAdded < maxNumberTrees) {
-      addTreeTo(tree.position_index);
+      
+      if (tree.is_boss) {
+        addObjectByTemplate(tree.template);
+      } else {
+        addTreeTo(tree.position_index);  
+      }
+      
       numberOfTreesAdded += 1;
 
       position_indices.push(tree.position_index);
