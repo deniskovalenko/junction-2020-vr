@@ -1,5 +1,5 @@
 /**
- * Created by Alvin Wan (alvinwan.com)
+ * Based on work by Alvin Wan (alvinwan.com)
  **/
 
 const POSITION_X_LEFT = -0.5;
@@ -102,21 +102,21 @@ function addObjectByTemplate(template) {
  * Add any number of trees across different lanes, randomly.
  **/
 function addTreesRandomly(
-  {
-    probTreeLeft = 0.2,
-    probTreeCenter = 0.2,
-    probTreeRight = 0.2,
-    probSuperBossLeft = 0.03,
-    probSuperBossCenter = 0.03,
-    probSuperBossRight = 0.03,
-    maxNumberTrees = 1
-  } = {}) {
+    {
+      probTreeLeft = 0.2,
+      probTreeCenter = 0.2,
+      probTreeRight = 0.2,
+      probSuperBossLeft = 0.01,
+      probSuperBossCenter = 0.01,
+      probSuperBossRight = 0.01,
+      maxNumberTrees = 1
+    } = {}) {
 
   var trees = [
     {probability: probTreeLeft,   position_index: 0},
     {probability: probTreeCenter, position_index: 1},
     {probability: probTreeRight,  position_index: 2},
-    {probability: probSuperBossLeft,  position_index: 0, is_boss: true, template: templateBossLeft},    
+    {probability: probSuperBossLeft,  position_index: 0, is_boss: true, template: templateBossLeft},
     {probability: probSuperBossCenter,  position_index: 1, is_boss: true, template: templateBossCenter},
     {probability: probSuperBossRight,  position_index: 2, is_boss: true, template: templateBossRight},
   ]
@@ -126,13 +126,13 @@ function addTreesRandomly(
   var position_indices = [];
   trees.forEach(function (tree) {
     if (Math.random() < tree.probability && numberOfTreesAdded < maxNumberTrees) {
-      
+
       if (tree.is_boss) {
         addObjectByTemplate(tree.template);
       } else {
-        addTreeTo(tree.position_index);  
+        addTreeTo(tree.position_index);
       }
-      
+
       numberOfTreesAdded += 1;
 
       position_indices.push(tree.position_index);
@@ -173,9 +173,16 @@ AFRAME.registerComponent('player', {
 
       if (POSITION_Z_LINE_START < position.z && position.z < POSITION_Z_LINE_END
           && tree_position_index == player_position_index
-         && !countedTrees.has(tree_id)) {
-          addScoreForTree(tree_id);
-          updateScoreDisplay();
+          && !countedTrees.has(tree_id)) {
+        addScoreForTree(tree_id);
+        updateScoreDisplay();
+        tree.children[1].setAttribute("dur", 700);
+        tree.children[1].setAttribute("from", position.x + " 0.6 " + position.z);
+        tree.children[1].setAttribute("to", "0 6 3.5");
+        tree.children[1].setAttribute("ease", "easeInCubic");
+
+        //tree.parentNode.removeChild(tree);
+
         // gameOver();
       }
 
@@ -363,14 +370,14 @@ window.onload = function() {
  * @param {Array} a items An array containing the items.
  */
 function shuffle(a) {
-   var j, x, i;
-   for (i = a.length - 1; i > 0; i--) {
-       j = Math.floor(Math.random() * (i + 1));
-       x = a[i];
-       a[i] = a[j];
-       a[j] = x;
-   }
-   return a;
+  var j, x, i;
+  for (i = a.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    x = a[i];
+    a[i] = a[j];
+    a[j] = x;
+  }
+  return a;
 }
 
 /**

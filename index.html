@@ -3,7 +3,7 @@
     <title>Junction 2020 - VR Game that you can play on your phone, PC, or VR Headset!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="styles.css">
-
+    <link rel="shortcut icon" href="assets/ico.JPG" />
 </head>
 <body>
 <main>
@@ -11,30 +11,32 @@
     <section id="start">
         <p> Dealing with pain and treatment anxiety is challenging, especially for kids. </p>
         <p>Research proves that Virtual Reality (VR) experience can reduce pain and anxiety during procedures.
-            It's applied already in certain hospitals, but using traditional VR headsets is out of reach for many still.
+            It's applied already in certain <a href="https://depts.washington.edu/hplab/research/virtual-reality/">hospitals</a>,
+            but using traditional VR headsets is out of reach for many still.
         </p>
-        <p>That's why we think it's crucial to bring this tool to more people, by building VR game that can be used with
-            any device, right from the browser.
+        <p>That's why we think it's crucial to bring this tool to more people, by building VR game that can be used on any device, right from the browser.
             Tune in to see what we've built during the weekend at Junction Connected 2020!
         </p>
     </section>
 
     <section id="content">
         <h2>What we've built</h2>
-        <p>We'be built VR game that allows to distract a patient, and engage in plesant activity</p>
+        <p>We'be built VR game that allows to distract a patient from pain.</p>
+        <p><blockquote>"VR pain reduction, or analgesia, works by acting on that age old platitude "pain is in the mind,"
+        or rather the academic version, "pain requires conscious attention." - <a href="https://www.researchgate.net/publication/12950241_Pain_demands_attention_A_cognitive-affective_model_of_the_interruptive_function_of_pain">ResearchGate</a></blockquote></p>
         <p>Game can be played on any device, with or without VR headsed, levereging WebVR, threeJS and AFrame
             framework</p>
     </section>
     <section id="demo">
         <h2>Try it out</h2>
-        <p>You can play the game from your browser. Tested on desktop (Chrome, Firefox, firefox gives better FPS), IOS
-            (Safari), Ipad (request mobile site)</p>
+        <p>You can play the game from your browser. Tested on desktop (Chrome, Firefox, firefox gives better FPS), iPhone (starting from 7th model)
+            (Safari), iPad (request mobile site)</p>
         <p>
-            <img src="assets/gameplay-1.gif" alt="Gameplay">
+            <img src="assets/demo.gif" alt="Gameplay">
         </p>
         <p>1. <strong>iPhone users </strong> -> go first to <a href="setup.html">setup page</a>, and grant permission to
             motion sensor, and make sure you can navigate by moving your phone </p>
-        <p> - 1.1 I would recommend pressing aA in Safari and selecting "hide toolbar", for more immersive feeling.</p>
+        <p> - 1.1 I would recommend pressing "aA" in Safari and selecting "hide toolbar", for more immersive feeling. Do this before pressing "VR" button in bottom right corner -> otherwise you'll see double picture in VR headset</p>
         <p>2. <strong>Android</strong> -> go straight to the game</p>
 
         <p>
@@ -55,21 +57,14 @@
     <section id="demo_recording">
         <h2>Demo Video</h2>
         <p>
+            VR Version:
         </p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/AWo2eAGDzjA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-    </section>
-
-
-    <section id="credits">
-        <h2>Credits</h2>
-        <p>Big thanks to A-Frame (<a href="https://aframe.io/">aframe.io</a>) for great tutorials
-            and to Alvin Wan and his
-            <a href="https://www.smashingmagazine.com/2019/03/virtual-reality-endless-runner-game-vr-part-1/">blog post
-                series</a> on building VR game using A-Frame,
-            whose examples and explainatons helped us build the game in one day with no prior experience in game
-            development
-
+        <p>
+            non-VR Version:
         </p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/bCGUSpVwJV8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
     </section>
 
@@ -93,7 +88,19 @@
         <p>Denys Kovalenko - <a href="https://deniskovalenko.com/">blog</a></p>
     </section>
 
-    <p>Code - https://github.com/deniskovalenko/junction-2020-vr</p>
+    <section id="credits">
+        <h2>Credits</h2>
+        <p>Big thanks to A-Frame (<a href="https://aframe.io/">aframe.io</a>) for great tutorials
+            and to Alvin Wan and his
+            <a href="https://www.smashingmagazine.com/2019/03/virtual-reality-endless-runner-game-vr-part-1/">blog post
+                series</a> on building VR game using A-Frame,
+            whose examples and explanations helped us build the game in one day with no prior experience in game
+            development
+        </p>
+        <p>Also, <a href="https://glitch.com/">https://glitch.com/</a> is a great tool for interactive & collaborative development, it surely made our iterations faster</p>
+    </section>
+
+    <p>Code - <a href="https://github.com/deniskovalenko/junction-2020-vr">https://github.com/deniskovalenko/junction-2020-vr</a></p>
 
 </main>
 
