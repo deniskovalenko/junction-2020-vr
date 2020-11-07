@@ -5,6 +5,8 @@ We want to create game that allows to distract oneself away from pain with fun V
 
 That's why we're using WebVR. Works on a phone, on a phone with VR headset (like Google CardBoard -> I bought "iBOX" from local shop for 13EUR), or on dedicated VR headsets.
 
+Try it out - https://deniskovalenko.github.io/junction-2020-vr/game.html
+
 
 Some links:
 https://blogs.nvidia.com/blog/2016/07/21/vr-helps-pain-relief/
