@@ -1,5 +1,5 @@
 <!--
-Created by Alvin Wan (alvinwan.com)
+Inspired by Alvin Wan (alvinwan.com)
 -->
 <!DOCTYPE html>
 <html>
@@ -8,12 +8,12 @@ Created by Alvin Wan (alvinwan.com)
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/alvinwan/aframe-low-poly@0.0.2/dist/aframe-low-poly.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/alvinwan/mirrorvr@0.2.3/dist/mirrorvr.min.js"></script>
+<!--     <script src="https://cdn.jsdelivr.net/gh/alvinwan/mirrorvr@0.2.3/dist/mirrorvr.min.js"></script> -->
     <script src="./assets/ocean.js"></script>
     <script src="./assets/ergo.js"></script>
   </head>
   <body>
-    <a-scene fog="type: linear; color: #a3d0ed; near:5; far:20">
+    <a-scene fog="type: linear; color: #a3d0ed; near:10; far:30">
 
       <a-sky color="#a3d0ed"></a-sky>
 
@@ -37,7 +37,7 @@ Created by Alvin Wan (alvinwan.com)
              align:center;"></a-mixin>
          <a-mixin id="title" text="
              font:exo2bold;
-             height:40;
+             height:100;
              width:40;
              opacity:0.75;
              anchor:center;
@@ -56,15 +56,18 @@ Created by Alvin Wan (alvinwan.com)
              opacity:0.75;
              anchor:center;
              align:center;"></a-mixin>
-        <img id="pingui" crossorigin="anonymous" src="https://vignette.wikia.nocookie.net/pingu/images/b/ba/Pingu_the_penguin.png/revision/latest?cb=20131217134349">
+<!--         <img id="pingui" crossorigin="anonymous" src="https://vignette.wikia.nocookie.net/pingu/images/b/ba/Pingu_the_penguin.png/revision/latest?cb=20131217134349"> -->
+        <a-asset-item id="pingui" src="https://deniskovalenko.github.io/junction-2020-vr/Pingu_obj.obj"></a-asset-item>
+        <a-asset-item id="pingui2" src="https://deniskovalenko.github.io/junction-2020-vr/3d/lonely_little_penguin/scene.gltf"></a-asset-item>
+        <a-asset-item id="pingui_colored" src="https://deniskovalenko.github.io/junction-2020-vr/colored_pengu.glb"></a-asset-item>
       </a-assets>
 
       <!-- Lights -->
-      <a-light type="directional" castShadow="true" intensity="0.4" color="#D0EAF9;" position="5 3 1"></a-light>
+      <a-light type="directional" castshadow="true" intensity="0.4" color="#D0EAF9;" position="5 3 1"></a-light>
       <a-light intensity="0.8" type="ambient" color="#B4C5EC"></a-light>
 
       <!-- Camera -->
-      <a-camera camera-listener lane-controls position="0 0 2.5">
+      <a-camera camera-listener lane-controls position="0 -1 4">
           <a-entity id="cursor-mobile" cursor="fuse: true; fuseTimeout: 250"
                 position="0 0 -1"
                 geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
@@ -85,45 +88,49 @@ Created by Alvin Wan (alvinwan.com)
         <a-animation attribute="position" from="-4 -0.2 -0.5" to="-2 -0.2 -0.5" repeat="indefinite" direction="alternate" dur="15000" easing="linear"></a-animation>
       </lp-cone>
         
-<!--     Fun part     -->
-<!--       <lp-cone class="iceberg" amplitude="0.1" segments-radial="6" segments-height="2" height="0.5" radius-top="0.25" radius-bottom="0.25" position="-5 -0.2 -3.5">
-        <a-animation attribute="rotation" from="5 0 -5" to="5 0 0" repeat="indefinite" direction="alternate" dur="800"></a-animation>
-        <a-animation attribute="position" from="-3 -0.2 -3.5" to="-5 -0.2 -5.5" repeat="indefinite" direction="alternate" dur="15000" easing="linear"></a-animation>
-      </lp-cone> -->
-        
+<!--     Ice Cave     -->
 
-        <lp-cone class="iceberg" material="side: double" rotation="90 0 10" amplitude="0.3" segments-radial="6" segments-height="2" height="100" radius-top="30" radius-bottom="5" position="0 -0.1 -5">
-        <a-animation attribute="rotation" from="89 1 11" to="91 1 9" repeat="indefinite" direction="alternate" dur="800"></a-animation>
+
+        <lp-cone class="iceberg" material="side: double" rotation="90 0 10" amplitude="0.3" segments-radial="9" segments-height="2" height="100" radius-top="30" radius-bottom="10" position="0 -0.1 -5">
+        <a-animation attribute="rotation" from="88 1 11" to="92 1 9" repeat="indefinite" direction="alternate" dur="2400"></a-animation>
         <a-animation attribute="position" from="0 -1 -5" to="-0.3 3 -10" repeat="indefinite" direction="alternate" dur="15000" easing="linear"></a-animation>
       </lp-cone>
       
+      <!-- Test penguin -->
+<!--       <a-entity gltf-model="#pingui2" position="0 0.7 -3" scale = "0.1 0.1 0.1"></a-entity> -->
+<!--       <a-entity gltf-model="#pingui3" position="0 0.7 -3" scale = "0.06 0.06 0.06" rotation="0 -80 0"></a-entity> -->
+<!--       <a-obj-model src="#pingui" position="0 1 -3" scale = "0.1 0.1 0.1" rotation="0 0 0"></a-obj-model> -->
       
-<!--     Fun part     -->
+<!--    Ice Cave   -->
       <!-- Ocean -->
       <a-ocean depth="50" width="50" amplitude="0" amplitude-variance="0.1" speed="1.5" speed-variance="1" opacity="1" density="50"></a-ocean>
       <a-ocean depth="50" width="50" opacity="0.5" amplitude="0" amplitude-variance="0.15" speed="1.5" speed-variance="1" density="50"></a-ocean>
 
       <!-- Platform -->
-      <lp-cone amplitude="0.05" amplitude-variance="0.05" scale="2 2 2" shadow position="0 -3.5 -1.5" rotation="90 0 0" radius-top="1.9" radius-bottom="1.9" segments-radial="20" segments-height="20" height="20" emissive="#005DED" emissive-intensity="0.1">
+      <lp-cone amplitude="0.05" amplitude-variance="0.05" scale="2 2 2" shadow position="0 -3.5 -1.5" rotation="90 0 0" radius-top="1.9" radius-bottom="1.9" segments-radial="25" segments-height="20" height="20" emissive="#005DED" emissive-intensity="0.1">
         <a-entity id="tree-container" position="0 .5 -1.5" rotation="-90 0 0">
 
           <!-- Trees -->
           <a-entity data-tree-position-index="1" class="tree" id="template-tree-center" shadow scale="0.3 0.3 0.3" position="0 0.6 0">
+<!--             <a-entity gltf-model="#pingui_colored" scale = "0.05 0.05 0.05" rotation="0 -90 0"></a-entity> -->
+<!--             <a-obj-model src="#pingui3" scale = "0.06 0.06 0.06"></a-obj-model> -->
             <a-entity mixin="foliage"></a-entity>
             <a-entity mixin="trunk" position="0 -0.5 0"></a-entity>
-            <a-animation attribute="position" ease="linear" from="0 0.6 -7" to="0 0.6 1.5" dur="5000"></a-animation>
+            <a-animation attribute="position" ease="linear" from="0 0.6 -7" to="0 0.6 3" dur="12000"></a-animation>
           </a-entity>
 
           <a-entity data-tree-position-index="0" class="tree" id="template-tree-left" shadow scale="0.3 0.3 0.3" position="-0.5 0.55 0">
+<!--             <a-entity gltf-model="#pingui_colored" scale = "0.05 0.05 0.05" rotation="0 -30 0"></a-entity> -->
             <a-entity mixin="foliage"></a-entity>
             <a-entity mixin="trunk" position="0 -0.5 0"></a-entity>
-            <a-animation attribute="position" ease="linear" from="-0.5 0.55 -7" to="-0.5 0.55 1.5" dur="5000"></a-animation>
+            <a-animation attribute="position" ease="linear" from="-0.5 0.55 -7" to="-0.5 0.55 3" dur="12000"></a-animation>
           </a-entity>
 
           <a-entity data-tree-position-index="2" class="tree" id="template-tree-right" shadow scale="0.3 0.3 0.3" position="0.5 0.55 0">
+<!--             <a-entity gltf-model="#pingui_colored" scale = "0.05 0.05 0.05" rotation="0 -120 0"></a-entity> -->
             <a-entity mixin="foliage"></a-entity>
             <a-entity mixin="trunk" position="0 -0.5 0"></a-entity>
-            <a-animation attribute="position" ease="linear" from="0.5 0.55 -7" to="0.5 0.55 1.5" dur="5000"></a-animation>
+            <a-animation attribute="position" ease="linear" from="0.5 0.55 -7" to="0.5 0.55 3" dur="12000"></a-animation>
           </a-entity>
 
           <!-- Score -->
@@ -146,12 +153,12 @@ Created by Alvin Wan (alvinwan.com)
                 <a-text value="Restart" mixin="heading" position="0 0.7 0"></a-text>
                 <a-box id="restart-button" position="0 0.6 -0.05" width="2" height="0.6" depth="0.1"></a-box>
               </a-entity>
-              <a-text value="Try again <3" mixin="title"></a-text>
+              <a-text value="Try again!" mixin="title"></a-text>
             </a-entity>
           </a-entity>
 
           <!-- Player -->
-          <a-entity id="player" player>
+           <a-entity id="player" player>
             <a-sphere radius="0.05">
               <a-animation repeat="indefinite" direction="alternate" attribute="position" ease="ease-in-out" from="0 0.5 0.6" to="0 0.525 0.6"></a-animation>
               <a-animation repeat="indefinite" direction="alternate" attribute="radius" from="0.05" to="0.055" dur="1500"></a-animation>
