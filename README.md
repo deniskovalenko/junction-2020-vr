@@ -7,6 +7,8 @@ That's why we're using WebVR. Works on a phone with or without (like Google Card
 
 Try it out!  https://deniskovalenko.github.io/junction-2020-vr/
 
+![](assets/gameplay-1.gif)
+
 Great series of blog posts explaininig how to build Web VR game using AFrame (aframe.io) - https://www.smashingmagazine.com/2019/03/virtual-reality-endless-runner-game-vr-part-1/
 
 
