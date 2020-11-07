@@ -61,10 +61,13 @@ Based on work by Alvin Wan (alvinwan.com)
         <!--         <img id="pingui" crossorigin="anonymous" src="https://vignette.wikia.nocookie.net/pingu/images/b/ba/Pingu_the_penguin.png/revision/latest?cb=20131217134349"> -->
         <!--         <a-asset-item id="pingui" src="https://deniskovalenko.github.io/junction-2020-vr/Pingu_obj.obj"></a-asset-item> -->
         <!--         <a-asset-item id="pingui2" src="https://deniskovalenko.github.io/junction-2020-vr/3d/lonely_little_penguin/scene.gltf"></a-asset-item> -->
-        <a-asset-item id="pingui_colored" src="https://deniskovalenko.github.io/junction-2020-vr/colored_pengu.glb"></a-asset-item>
+        <a-asset-item id="pingui_colored"
+                      src="https://deniskovalenko.github.io/junction-2020-vr/colored_pengu.glb"></a-asset-item>
         <!--         <a-asset-item id="pingui_small" src="https://deniskovalenko.github.io/junction-2020-vr/colored_smaller4.glb"></a-asset-item> -->
-        <a-asset-item id="pingui_swimming" src="https://deniskovalenko.github.io/junction-2020-vr/3d/penguin_swimming/scene.gltf"></a-asset-item>
-
+        <a-asset-item id="pingui_swimming"
+                      src="https://deniskovalenko.github.io/junction-2020-vr/3d/penguin_swimming/scene.gltf"></a-asset-item>
+        <a-asset-item id="ramp"
+                      src="https://deniskovalenko.github.io/junction-2020-vr/3d/ramp/Skate_Ramp_Fun_Box_07_.obj"></a-asset-item>
     </a-assets>
 
     <!-- Lights -->
@@ -86,38 +89,53 @@ Based on work by Alvin Wan (alvinwan.com)
     </a-camera>
 
     <!-- Icebergs -->
-    <lp-cone class="iceberg" amplitude-variance="0.25" segments-radial="5" segments-height="3" height="1" radius-top="0.15" radius-bottom="0.5" position="3 -0.1 -1.5">
-        <a-animation attribute="rotation" from="-5 0 0" to="5 0 0" repeat="indefinite" direction="alternate"></a-animation>
-        <a-animation attribute="position" from="3 -0.2 -1.5" to="4 -0.2 -2.5" repeat="indefinite" direction="alternate" dur="12000" easing="linear"></a-animation>
+    <lp-cone class="iceberg" amplitude-variance="0.25" segments-radial="5" segments-height="3" height="1"
+             radius-top="0.15" radius-bottom="0.5" position="3 -0.1 -1.5">
+        <a-animation attribute="rotation" from="-5 0 0" to="5 0 0" repeat="indefinite"
+                     direction="alternate"></a-animation>
+        <a-animation attribute="position" from="3 -0.2 -1.5" to="4 -0.2 -2.5" repeat="indefinite" direction="alternate"
+                     dur="12000" easing="linear"></a-animation>
     </lp-cone>
-    <lp-cone class="iceberg" amplitude="0.12" segments-radial="7" segments-height="3" height="0.5" radius-top="0.25" radius-bottom="0.35" position="-3 -0.1 -0.5">
-        <a-animation attribute="rotation" from="0 0 -5" to="5 0 0" repeat="indefinite" direction="alternate" dur="1500"></a-animation>
-        <a-animation attribute="position" from="-4 -0.2 -0.5" to="-2 -0.2 -0.5" repeat="indefinite" direction="alternate" dur="15000" easing="linear"></a-animation>
+    <lp-cone class="iceberg" amplitude="0.12" segments-radial="7" segments-height="3" height="0.5" radius-top="0.25"
+             radius-bottom="0.35" position="-3 -0.1 -0.5">
+        <a-animation attribute="rotation" from="0 0 -5" to="5 0 0" repeat="indefinite" direction="alternate"
+                     dur="1500"></a-animation>
+        <a-animation attribute="position" from="-4 -0.2 -0.5" to="-2 -0.2 -0.5" repeat="indefinite"
+                     direction="alternate" dur="15000" easing="linear"></a-animation>
     </lp-cone>
 
-    <lp-cone class="iceberg" amplitude-variance="0.25" segments-radial="5" segments-height="3" height="1" radius-top="0.15" radius-bottom="0.5" position="5 -0.1 -6.5">
-        <a-animation attribute="rotation" from="-5 0 0" to="5 0 0" repeat="indefinite" direction="alternate"></a-animation>
-        <a-animation attribute="position" from="5 -0.2 -6.5" to="6 -0.2 -7.5" repeat="indefinite" direction="alternate" dur="12000" easing="linear"></a-animation>
+    <lp-cone class="iceberg" amplitude-variance="0.25" segments-radial="5" segments-height="3" height="1"
+             radius-top="0.15" radius-bottom="0.5" position="5 -0.1 -6.5">
+        <a-animation attribute="rotation" from="-5 0 0" to="5 0 0" repeat="indefinite"
+                     direction="alternate"></a-animation>
+        <a-animation attribute="position" from="5 -0.2 -6.5" to="6 -0.2 -7.5" repeat="indefinite" direction="alternate"
+                     dur="12000" easing="linear"></a-animation>
     </lp-cone>
 
-    <lp-cone class="iceberg" amplitude-variance="0.25" segments-radial="5" segments-height="3" height="1" radius-top="0.15" radius-bottom="0.5" position="-5 -0.1 -6.5">
-        <a-animation attribute="rotation" from="-5 0 0" to="5 0 0" repeat="indefinite" direction="alternate"></a-animation>
-        <a-animation attribute="position" from="-5 -0.2 -6.5" to="-6 -0.2 -7.5" repeat="indefinite" direction="alternate" dur="12000" easing="linear"></a-animation>
+    <lp-cone class="iceberg" amplitude-variance="0.25" segments-radial="5" segments-height="3" height="1"
+             radius-top="0.15" radius-bottom="0.5" position="-5 -0.1 -6.5">
+        <a-animation attribute="rotation" from="-5 0 0" to="5 0 0" repeat="indefinite"
+                     direction="alternate"></a-animation>
+        <a-animation attribute="position" from="-5 -0.2 -6.5" to="-6 -0.2 -7.5" repeat="indefinite"
+                     direction="alternate" dur="12000" easing="linear"></a-animation>
     </lp-cone>
 
 
     <!--     Ice Cave     -->
 
 
-    <lp-cone class="iceberg" material="side: double" rotation="90 0 10" amplitude="0.3" segments-radial="9" segments-height="2" height="100" radius-top="30" radius-bottom="10" position="0 -0.1 -5">
-        <a-animation attribute="rotation" from="88 1 11" to="92 1 9" repeat="indefinite" direction="alternate" dur="2400"></a-animation>
-        <a-animation attribute="position" from="0 -1 -5" to="-0.3 3 -10" repeat="indefinite" direction="alternate" dur="15000" easing="linear"></a-animation>
+    <lp-cone class="iceberg" material="side: double" rotation="90 0 10" amplitude="0.3" segments-radial="9"
+             segments-height="2" height="100" radius-top="30" radius-bottom="10" position="0 -0.1 -5">
+        <a-animation attribute="rotation" from="88 1 11" to="92 1 9" repeat="indefinite" direction="alternate"
+                     dur="2400"></a-animation>
+        <a-animation attribute="position" from="0 -1 -5" to="-0.3 3 -10" repeat="indefinite" direction="alternate"
+                     dur="15000" easing="linear"></a-animation>
     </lp-cone>
 
     <!-- Test penguin -->
     <!--       <a-entity gltf-model="#pingui_small" position="0 0.7 1" cale = "2 2 2"></a-entity> -->
     <!--       <a-entity gltf-model="#pingui_swimming" position="0 1.9 0" scale = "0.3 0.3 0.3" rotation="0 -130 50"></a-entity> -->
-    <!--       <a-obj-model src="#pingui" position="0 1 -3" scale = "0.1 0.1 0.1" rotation="0 0 0"></a-obj-model> -->
+    <!--       <a-obj-model src="#ramp" position="0 0.4 0" scale = "0.003 0.003 0.003" rotation="0 25 0"></a-obj-model> -->
 
     <!--    Ice Cave   -->
     <!-- Ocean -->
@@ -125,50 +143,63 @@ Based on work by Alvin Wan (alvinwan.com)
     <!--       <a-ocean depth="50" width="50" opacity="0.5" amplitude="0" amplitude-variance="0.15" speed="1.5" speed-variance="1" density="50"></a-ocean> -->
 
     <!-- Platform -->
-    <lp-cone amplitude="0.05" amplitude-variance="0.05" scale="2 2 2" shadow position="0 -3.5 -1.5" rotation="90 0 0" radius-top="1.9" radius-bottom="1.9" segments-radial="20" segments-height="20" height="20" emissive="#005DED" emissive-intensity="0.1">
+    <lp-cone amplitude="0.05" amplitude-variance="0.05" scale="2 2 2" shadow position="0 -3.5 -1.5" rotation="90 0 0"
+             radius-top="1.9" radius-bottom="1.9" segments-radial="20" segments-height="20" height="20"
+             emissive="#005DED" emissive-intensity="0.1">
         <a-entity id="tree-container" position="0 .5 -1.5" rotation="-90 0 0">
 
             <!-- Penguins -->
-            <a-entity data-tree-position-index="1" class="tree" id="template-tree-center" dynamic-body grabbableshadow scale="0.3 0.3 0.3" position="0 0.6 0">
-                <a-entity gltf-model="#pingui_swimming" scale = "0.25 0.25 0.25" rotation="0 -90 0"></a-entity>
+            <a-entity data-tree-position-index="1" class="tree" id="template-tree-center" dynamic-body grabbableshadow
+                      scale="0.3 0.3 0.3" position="0 0.6 0">
+                <a-entity gltf-model="#pingui_swimming" scale="0.25 0.25 0.25" rotation="0 -90 0"></a-entity>
                 <!--             <a-obj-model src="#pingui3" scale = "0.06 0.06 0.06"></a-obj-model> -->
                 <!--             <a-entity mixin="foliage"></a-entity>
                             <a-entity mixin="trunk" position="0 -0.5 0"></a-entity> -->
-                <a-animation attribute="position" ease="linear" from="0 0.6 -5" to="0 0.6 3.5" dur="12000"></a-animation>
+                <a-animation attribute="position" ease="linear" from="0 0.6 -5" to="0 0.6 3.5"
+                             dur="12000"></a-animation>
             </a-entity>
 
-            <a-entity data-tree-position-index="0" class="tree" id="template-tree-left" shadow scale="0.3 0.3 0.3" position="-0.5 0.55 0">
-                <a-entity gltf-model="#pingui_swimming" scale = "0.25 0.25 0.25" rotation="0 -30 0"></a-entity>
+            <a-entity data-tree-position-index="0" class="tree" id="template-tree-left" shadow scale="0.3 0.3 0.3"
+                      position="-0.5 0.55 0">
+                <a-entity gltf-model="#pingui_swimming" scale="0.25 0.25 0.25" rotation="0 -30 0"></a-entity>
                 <!--             <a-entity mixin="foliage"></a-entity>
                             <a-entity mixin="trunk" position="0 -0.5 0"></a-entity> -->
-                <a-animation attribute="position" ease="linear" from="-0.5 0.55 -5" to="-0.5 0.55 3.5" dur="12000"></a-animation>
+                <a-animation attribute="position" ease="linear" from="-0.5 0.55 -5" to="-0.5 0.55 3.5"
+                             dur="12000"></a-animation>
             </a-entity>
 
-            <a-entity data-tree-position-index="2" class="tree" id="template-tree-right" shadow scale="0.3 0.3 0.3" position="0.5 0.55 0">
-                <a-entity gltf-model="#pingui_swimming" scale = "0.25 0.25 0.25" rotation="0 -120 0"></a-entity>
+            <a-entity data-tree-position-index="2" class="tree" id="template-tree-right" shadow scale="0.3 0.3 0.3"
+                      position="0.5 0.55 0">
+                <a-entity gltf-model="#pingui_swimming" scale="0.25 0.25 0.25" rotation="0 -120 0"></a-entity>
                 <!--             <a-entity mixin="foliage"></a-entity>
                             <a-entity mixin="trunk" position="0 -0.5 0"></a-entity> -->
-                <a-animation attribute="position" ease="linear" from="0.5 0.55 -5" to="0.5 0.55 4.6" dur="12000"></a-animation>
+                <a-animation attribute="position" ease="linear" from="0.5 0.55 -5" to="0.5 0.55 4.6"
+                             dur="12000"></a-animation>
             </a-entity>
 
 
             <!--  Bosses templates           -->
-            <a-entity data-tree-position-index="2" class="tree" id="template-boss-right" shadow scale="0.3 0.3 0.3" position="0.5 0.55 0">
-                <a-entity gltf-model="#pingui_colored" scale = "0.3 0.3 0.3" rotation="0 -120 0"></a-entity>
+            <a-entity data-tree-position-index="2" class="tree" id="template-boss-right" shadow scale="0.3 0.3 0.3"
+                      position="0.5 0.55 0">
+                <a-entity gltf-model="#pingui_colored" scale="0.3 0.3 0.3" rotation="0 -120 0"></a-entity>
                 <!--             <a-entity mixin="foliage"></a-entity>
                             <a-entity mixin="trunk" position="0 -0.5 0"></a-entity> -->
-                <a-animation attribute="position" ease="linear" from="0.5 1 -10" to="0.5 0.55 4.6" dur="12000"></a-animation>
+                <a-animation attribute="position" ease="linear" from="0.5 1 -10" to="0.5 0.55 4.6"
+                             dur="12000"></a-animation>
             </a-entity>
 
-            <a-entity data-tree-position-index="0" class="tree" id="template-boss-left" shadow scale="0.3 0.3 0.3" position="-0.5 0.55 0">
-                <a-entity gltf-model="#pingui_colored" scale = "0.3 0.3 0.3" rotation="0 -30 0"></a-entity>
+            <a-entity data-tree-position-index="0" class="tree" id="template-boss-left" shadow scale="0.3 0.3 0.3"
+                      position="-0.5 0.55 0">
+                <a-entity gltf-model="#pingui_colored" scale="0.3 0.3 0.3" rotation="0 -30 0"></a-entity>
                 <!--             <a-entity mixin="foliage"></a-entity>
                             <a-entity mixin="trunk" position="0 -0.5 0"></a-entity> -->
-                <a-animation attribute="position" ease="linear" from="-0.5 1 -10" to="-0.5 0.55 3.5" dur="12000"></a-animation>
+                <a-animation attribute="position" ease="linear" from="-0.5 1 -10" to="-0.5 0.55 3.5"
+                             dur="12000"></a-animation>
             </a-entity>
 
-            <a-entity data-tree-position-index="1" class="tree" id="template-boss-center" shadow scale="0.3 0.3 0.3" position="0 0.6 0">
-                <a-entity gltf-model="#pingui_colored" scale = "0.3 0.3 0.3" rotation="0 -90 0"></a-entity>
+            <a-entity data-tree-position-index="1" class="tree" id="template-boss-center" shadow scale="0.3 0.3 0.3"
+                      position="0 0.6 0">
+                <a-entity gltf-model="#pingui_colored" scale="0.3 0.3 0.3" rotation="0 -90 0"></a-entity>
                 <!--             <a-obj-model src="#pingui3" scale = "0.06 0.06 0.06"></a-obj-model> -->
                 <!--             <a-entity mixin="foliage"></a-entity>
                             <a-entity mixin="trunk" position="0 -0.5 0"></a-entity> -->
@@ -202,16 +233,22 @@ Based on work by Alvin Wan (alvinwan.com)
 
             <!-- Player -->
             <a-entity id="player" player>
-                <a-sphere radius="0.05">
-                    <a-animation repeat="indefinite" direction="alternate" attribute="position" ease="ease-in-out" from="0 0.5 0.6" to="0 0.525 0.6"></a-animation>
-                    <a-animation repeat="indefinite" direction="alternate" attribute="radius" from="0.05" to="0.055" dur="1500"></a-animation>
+                <a-obj-model src="#ramp" position="0 0.2 0" scale="0.0015 0.0015 0.0015" rotation="0 25 0">
+                    <!--             <a-sphere radius="0.05"> -->
+                    <a-animation repeat="indefinite" direction="alternate" attribute="position" ease="ease-in-out"
+                                 from="0 0.5 0.6" to="0 0.525 0.6"></a-animation>
+                    <a-animation repeat="indefinite" direction="alternate" attribute="radius" from="0.05" to="0.055"
+                                 dur="1500"></a-animation>
                     <a-light type="point" intensity="0.35" color="#FF440C">
-                        <a-animation repeat="indefinite" direction="alternate-reverse" attribute="intensity" ease="ease-in-out" from="0.35" to="0.5"></a-animation>
+                        <a-animation repeat="indefinite" direction="alternate-reverse" attribute="intensity"
+                                     ease="ease-in-out" from="0.35" to="0.5"></a-animation>
                     </a-light>
-                </a-sphere>
+                </a-obj-model>
+                <!--             </a-sphere> -->
             </a-entity>
         </a-entity>
     </lp-cone>
 </a-scene>
 </body>
 </html>
+
