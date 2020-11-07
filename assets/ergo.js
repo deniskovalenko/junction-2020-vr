@@ -106,9 +106,9 @@ function addTreesRandomly(
     probTreeLeft = 0.2,
     probTreeCenter = 0.2,
     probTreeRight = 0.2,
-    probSuperBossLeft = 0.03,
-    probSuperBossCenter = 0.03,
-    probSuperBossRight = 0.03,
+    probSuperBossLeft = 0.01,
+    probSuperBossCenter = 0.01,
+    probSuperBossRight = 0.01,
     maxNumberTrees = 1
   } = {}) {
 
