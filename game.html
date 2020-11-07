@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>360&deg; Image Gallery</title>
+    <meta name="description" content="360&deg; Image Gallery - A-Frame">
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+    <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+    
+    <script src="components/set-image.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img id="city" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
+        <img id="city-thumb" crossorigin="anonymous" src="https://vignette.wikia.nocookie.net/pingu/images/b/ba/Pingu_the_penguin.png/revision/latest?cb=20131217134349">
+        <img id="cubes-thumb" crossorigin="anonymous" src="https://2.bp.blogspot.com/__0DRQYEbLs0/RsVuVsVcV9I/AAAAAAAAALs/Z2DOm1LU2Bo/s320/pingu+penguin.gif">
+        <img id="sechelt-thumb" crossorigin="anonymous" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f5fd11b-3372-4b65-a953-2ad89287b453/dc7vp30-07c0f28f-3126-43f6-a4d2-1afbef8af802.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMWY1ZmQxMWItMzM3Mi00YjY1LWE5NTMtMmFkODkyODdiNDUzXC9kYzd2cDMwLTA3YzBmMjhmLTMxMjYtNDNmNi1hNGQyLTFhZmJlZjhhZjgwMi5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.o9XPNgzcAOQqGnXAGY00dkIf3SFzUAs6vc84dB86UzQ">
+        <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+        <img id="cubes" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
+        <img id="sechelt" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+
+        <!-- Image link template to be reused. -->
+        <script id="link" type="text/html">
+          <a-entity class="link"
+            geometry="primitive: plane; height: 1; width: 1"
+            material="shader: flat; src: ${thumb}"
+            event-set__1="_event: mousedown; scale: 1 1 1"
+            event-set__2="_event: mouseup; scale: 1.8 1.8 1"
+            event-set__3="_event: mouseenter; scale: 1.8 1.8 1"
+            event-set__4="_event: mouseleave; scale: 1 1 1"
+            set-image="on: click; target: #image-360; src: ${src}"
+            sound="on: click; src: #click-sound"></a-entity>
+        </script>
+      </a-assets>
+      
+      <a-asset-item id="cityModel" src="https://deniskovalenko.github.io/junction-2020-vr/winter-iceland/WinterIslandv2.gltf"></a-asset-item>       
+      <a-gltf-model src="#cityModel"></a-gltf-model>
+    <a-entity id="lightSphere" geometry="primitive: sphere; radius: 0.2" material="shader: flat" light="type: point; color: #FFF" position="-4 3 -4"
+               animation="property: position; to: 0 1.25 -5; dir: alternate; loop: true"></a-entity>
+      <a-entity particle-system="preset: snow; particleCount: 10000"></a-entity>
+      <a-entity particle-system="preset: default; color: #515; particleCount: 1000; rotationAngle: 2; direction: -1;" position="0 0 -5"></a-entity>
+
+      <a-entity id="sphere" geometry="primitive: sphere; radius: 1.25" material="color: #EF2D5E" position="0 1.25 -5"
+                 animation="property: scale; dir: alternate; dur: 100; to: 1.1 1.1 1.1; loop: true"></a-entity> 
+<!--       <a-entity id="box" geometry="primitive: box; width: 1; depth: 1; height: 1" position="-1 0.5 -3" material="color: #4CC3D9"></a-entity> -->
+<!--       <a-entity id="cylinder" geometry="primitive: cylinder; radius: 0.5; height: 1.5" position="1 0.75 -3" material="color: #FFC65D"></a-entity> -->
+
+<!--       <a-entity id="plane" geometry="primitive: plane; width: 10000; height: 10000" material="color: #333; src: #groundTexture; repeat: 10000 10000; transparent: true; metalness: 0.6; roughness: 0.4" rotation="-90 0 0"></a-entity> -->
+<!--       <a-entity id="sky" geometry="primitive: sphere; radius: 100" material="color: #666; shader: flat; side: back"></a-entity> -->
+      <a-entity light="type: ambient; color: #444"></a-entity>
+<!--       <a-entity light="type: directional; color: #AAA" position="-1 2 0"></a-entity> -->
+      <!-- 360-degree image. -->
+      <a-sky id="image-360" radius="30" src="#city"></a-sky>
+
+      <!-- Image links. -->
+      <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
+        <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
+        <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
+        <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
+      </a-entity>
+         <a-box position="-20 0.5 -3" rotation="0 45 0" color="#000"
+           event-set__enter="_event: mouseenter; color: #FFF"
+           event-set__leave="_event: mouseleave; color: #000"></a-box>
+      <a-entity geometry="primitive:box;" material="shader:gif;src:url(nyancat.gif);color:green;opacity:.8"></a-entity>
+      <!-- Camera + cursor. -->
+      <a-camera>
+        <a-cursor id="cursor"></a-cursor>
+      </a-camera>
+    </a-scene>
+  </body>
+</html>
